@@ -4,7 +4,7 @@ const axios = require("axios")
 
 const bot = new Telegraf("1140311147:AAH-CmKM4rRzKYSD0BQwdsTTpxtQheju5U0")
 bot.start((ctx) => ctx.reply("Welcome"))
-bot.help((ctx) => ctx.reply("Send me a sticker"))
+bot.help((ctx) => ctx.reply("Send me a stickersss"))
 bot.on("sticker", (ctx) => ctx.reply("👍"))
 bot.hears(/corona/gi, (ctx) => {
   axios.get("https://covid19.mathdro.id/api/countries/idn").then((res) => {
