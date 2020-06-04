@@ -1,0 +1,14 @@
+{
+  "name": "ariya-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Muhammad Rivki <Muhammad.Rivki@live.com>",
+  "license": "MIT",
+  "script": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "telegraf": "^3.38.0"
+  }
+}
