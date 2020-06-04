@@ -24,3 +24,5 @@ bot.hears(/hi bitch/gi, async (ctx) => {
 })
 
 bot.launch()
+
+module.exports = bot
