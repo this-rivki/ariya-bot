@@ -20,8 +20,4 @@ module.exports = (bot) => {
     bot.handleUpdate(req.body)
     res.sendStatus(200)
   })
-
-  app.get("/", (req, res) => {
-    res.send("Started")
-  })
 }
