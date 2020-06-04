@@ -5,7 +5,7 @@
   "author": "Muhammad Rivki <Muhammad.Rivki@live.com>",
   "license": "MIT",
   "script": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
