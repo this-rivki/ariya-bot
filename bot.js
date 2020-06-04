@@ -1,5 +1,4 @@
 const { Telegraf } = require("telegraf")
-const functions = require("firebase-functions")
 
 const axios = require("axios")
 
