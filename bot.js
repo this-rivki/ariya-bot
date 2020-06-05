@@ -44,6 +44,14 @@ bot.hears(/hi bitch/gi, async (ctx) => {
   })
 })
 
+bot.hears(/bitch/gi, async (ctx) => {
+  console.log(ctx.get)
+  console.log(ctx.chat)
+  ctx.reply(`yes @${ctx.message.from.username}!!`, {
+    reply_to_message_id: ctx.message.message_id,
+  })
+})
+
 bot.hears(/canda|lucu|cute|cnd/gi, (ctx) => {
   console.log(ctx.chat)
   ctx.replyWithDocument(stickers['rollingEyes'].id)
