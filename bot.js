@@ -8,6 +8,8 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 
 require('./schedule')(bot)
 
+const getRandomNumber = (arr) => Math.floor(Math.random() * arr.length)
+
 bot.start((ctx) => ctx.reply('Welcome'))
 bot.help((ctx) => ctx.reply('Send me a stickersss'))
 bot.on('sticker', (ctx) => {
@@ -58,7 +60,7 @@ bot.hears(/bitch/gi, async (ctx) => {
     'apaan sih lo? kangen ya panggil-panggil? 😎',
     'gaje lu..',
   ]
-  ctx.reply(answers[Math.floor(Math.random() * answers.length)], {
+  ctx.reply(answers[getRandomNumber(answers)], {
     reply_to_message_id: ctx.message.message_id,
   })
 })
@@ -66,6 +68,17 @@ bot.hears(/bitch/gi, async (ctx) => {
 bot.hears(/canda|lucu|cute|cnd/gi, (ctx) => {
   console.log(ctx.chat)
   ctx.replyWithDocument(stickers['rollingEyes'].id)
+})
+
+bot.hears(/rame.*belum|sepi.*sih/, (ctx) => {
+  const answers = [
+    'belum nihh',
+    'gak tau pada kemana orang-orang',
+    'belum nih, belum rame.',
+  ]
+  ctx.reply(answers[getRandomNumber(answers)], {
+    parse_mode: 'Markdown',
+  })
 })
 
 bot.hears(/itungin/gi, (ctx) => {
@@ -114,7 +127,7 @@ bot.hears(/bego|gak sekolah/gi, (ctx) => {
     'baru tau??',
     `kemana saja anda @${username}??`,
   ]
-  ctx.reply(answers[Math.floor(Math.random() * answers.length)], {
+  ctx.reply(answers[getRandomNumber(answers)], {
     parse_mode: 'Markdown',
   })
 })
