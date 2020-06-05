@@ -88,6 +88,24 @@ bot.hears(/itungin/gi, (ctx) => {
   ctx.reply(`hasilnya adalah ${result}`)
 })
 
+bot.hears(/bego/gi, (ctx) => {
+  const username = ctx.message.from.username || ctx.message.from.first_name
+  const answers = [
+    'ya maaf. 😭',
+    'gw emang bego. 😭',
+    'makanya ajarin gw biar gak bego. 😎',
+    'sekali-kali, biar gak pinter mulu',
+    'kapan sih gw pinter?? 🤔',
+    'siapa duluuu...',
+    'lah emang..',
+    'baru tau??',
+    `kemana saja anda @${username}??`,
+  ]
+  ctx.reply(answers[Math.floor(Math.random() * answers.length)], {
+    parse_mode: 'Markdown',
+  })
+})
+
 bot.hears(/mput/gi, (ctx) => {
   console.log(ctx.chat)
   ctx.reply('[Sini liat portfolio mput aja bitch!!!](https://ariya.design)', {
