@@ -46,6 +46,10 @@ bot.hears(/hi bitch/gi, async (ctx) => {
   })
 })
 
+bot.hears(/canda|lucu|cute|cnd/gi, (ctx) => {
+  ctx.replyWithDocument(stickers['rollingEyes'].id)
+})
+
 bot.hears(/itungin/gi, (ctx) => {
   const text = ctx.message.text
   const isMultiple =
