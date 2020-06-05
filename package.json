@@ -17,6 +17,6 @@
     "telegraf": "^3.38.0"
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "prettier": "2.0.5"
   }
 }
