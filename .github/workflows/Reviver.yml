@@ -4,10 +4,8 @@
 name: Cron Reviver
 
 on:
-  pull_request:
-    branches: '*'
-#   schedule:
-#     - cron: "*/60 * * * *"
+  schedule:
+    - cron: "*/60 * * * *"
 
 jobs:
   curl:
