@@ -63,12 +63,25 @@ bot.hears(/itungin/gi, (ctx) => {
   const text = ctx.message.text
   const isMultiple =
     ['*', 'x', 'kali'].filter((x) => text.indexOf(x)).length > 1
+  const isAdd =
+    ['tambah', '+', 'plus'].filter((x) => text.indexOf(x)).length > 1
+  const isDiv = ['bagi', ':', '/'].filter((x) => text.indexOf(x)).length > 1
+  const isSub = ['kurang', '-', 'min'].filter((x) => text.indexOf(x)).length > 1
   const splitText = text.split(' ')
   const arrNumber = splitText.filter(Number).map(Number)
 
   let result = 0
   if (isMultiple) {
     result = arrNumber.reduce((prev, next) => prev * next, 1)
+  }
+  if (isAdd) {
+    result = arrNumber.reduce((prev, next) => prev + next, 0)
+  }
+  if (isDiv) {
+    result = arrNumber.reduce((prev, next) => prev / next, 1)
+  }
+  if (isSub) {
+    result = arrNumber.reduce((prev, next) => prev - next, 0)
   }
   ctx.reply(`hasilnya adalah ${result}`)
 })
