@@ -47,7 +47,8 @@ bot.hears(/hi bitch/gi, async (ctx) => {
 bot.hears(/bitch/gi, async (ctx) => {
   console.log(ctx.get)
   console.log(ctx.chat)
-  ctx.reply(`yes @${ctx.message.from.username}!!`, {
+  const username = ctx.message.from.username || ctx.message.from.first_name
+  ctx.reply(`yes @${username}!!`, {
     reply_to_message_id: ctx.message.message_id,
   })
 })
