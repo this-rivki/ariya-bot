@@ -80,7 +80,10 @@ bot.hears(/itungin/gi, (ctx) => {
     result = arrNumber.reduce((prev, next) => prev + next, 0)
   }
   if (isDiv) {
-    result = arrNumber.reduce((prev, next) => prev / next, 1)
+    result = arrNumber.reduce(
+      (prev, next, idx) => (idx ? prev / next : next),
+      1
+    )
   }
   if (isSub) {
     result = arrNumber.reduce((prev, next) => prev - next, 0)
