@@ -6,6 +6,10 @@ const stickers = require('./stickers')
 
 // const bot = new Telegraf('1140311147:AAH-CmKM4rRzKYSD0BQwdsTTpxtQheju5U0') // PROD
 const bot = new Telegraf('1111657351:AAHHgnVZdsLi-IpHY60SeNcZJVonJpLRIaI') // DEV
+// const bot = new Telegraf('577924115:AAHU9ei4MD_BvxutTISaxO_koUIu3XYmZYE') // DEV
+
+// require('./schedule')(bot)
+
 bot.start((ctx) => ctx.reply('Welcome'))
 bot.help((ctx) => ctx.reply('Send me a stickersss'))
 bot.on('sticker', (ctx) => {
@@ -13,6 +17,11 @@ bot.on('sticker', (ctx) => {
   if (uniqueId === stickers['assalamualaikum'].uniqueId) {
     ctx.replyWithSticker(stickers['waalaikumsalam'].id)
   }
+})
+
+bot.on('animation', (ctx) => {
+  console.log(ctx.message)
+  ctx.reply('ctx.message')
 })
 
 bot.hears(/sticker/gi, (ctx) =>
@@ -61,7 +70,5 @@ bot.hears(/hi/gi, (ctx) => {
   console.log(ctx.chat)
   ctx.reply('hi')
 })
-
-require('./schedule')(bot)
 
 module.exports = bot
