@@ -4,8 +4,7 @@ const fs = require('fs')
 
 const stickers = require('./stickers')
 
-// const bot = new Telegraf('1140311147:AAH-CmKM4rRzKYSD0BQwdsTTpxtQheju5U0') // PROD
-const bot = new Telegraf('1111657351:AAHHgnVZdsLi-IpHY60SeNcZJVonJpLRIaI') // DEV
+const bot = new Telegraf(process.env.BOT_TOKEN)
 
 require('./schedule')(bot)
 
