@@ -1,6 +1,11 @@
 const { Telegraf } = require('telegraf')
 const axios = require('axios')
-const fs = require('fs')
+const groupIds = require('./group-id')
+
+const groupId =
+  process.env.NODE_ENV === 'DEV'
+    ? groupIds['mikqi-and-bot']
+    : groupIds['anak-bawang-cabang-tele']
 
 const stickers = require('./stickers')
 
@@ -137,6 +142,10 @@ bot.hears(/mput/gi, (ctx) => {
   ctx.reply('[Sini liat portfolio mput aja bitch!!!](https://ariya.design)', {
     parse_mode: 'Markdown',
   })
+})
+
+bot.command('kirim', (ctx) => {
+  ctx.telegram.sendMessage(groupId, ctx.message.text.replace('/kirim ', ''))
 })
 
 bot.launch()
