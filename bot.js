@@ -45,10 +45,20 @@ bot.hears(/hi bitch/gi, async (ctx) => {
 })
 
 bot.hears(/bitch/gi, async (ctx) => {
-  console.log(ctx.get)
   console.log(ctx.chat)
   const username = ctx.message.from.username || ctx.message.from.first_name
-  ctx.reply(`yes @${username}!!`, {
+  const answers = [
+    `yes @${username}!!`,
+    'bitch adalah gw!! 😎',
+    `kenapa panggil-panggil @${username}`,
+    'bitch is me!!',
+    'fucek!',
+    'bego',
+    'apaan sih lo panggil-panggil gw?',
+    'apaan sih lo? kangen ya panggil-panggil? 😎',
+    'gaje lu..',
+  ]
+  ctx.reply(answers[Math.floor(Math.random() * answers.length)], {
     reply_to_message_id: ctx.message.message_id,
   })
 })
