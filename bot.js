@@ -11,18 +11,15 @@ require('./schedule')(bot)
 bot.start((ctx) => ctx.reply('Welcome'))
 bot.help((ctx) => ctx.reply('Send me a stickersss'))
 bot.on('sticker', (ctx) => {
+  console.log(ctx.chat)
   const uniqueId = ctx.message.sticker.file_unique_id
   if (uniqueId === stickers['assalamualaikum'].uniqueId) {
     ctx.replyWithSticker(stickers['waalaikumsalam'].id)
   }
 })
 
-bot.on('animation', (ctx) => {
-  console.log(ctx.message)
-  ctx.reply('ctx.message')
-})
-
 bot.hears(/corona/gi, (ctx) => {
+  console.log(ctx.chat)
   axios.get('https://covid19.mathdro.id/api/countries/idn').then((res) => {
     const { confirmed, recovered, deaths } = res.data
     ctx.reply(
@@ -33,6 +30,7 @@ bot.hears(/corona/gi, (ctx) => {
 })
 
 bot.hears(/hi ariya/gi, (ctx) => {
+  console.log(ctx.chat)
   ctx.reply(`hi @${ctx.message.from.username} bitch!!`, {
     reply_to_message_id: ctx.message.message_id,
   })
@@ -40,16 +38,19 @@ bot.hears(/hi ariya/gi, (ctx) => {
 
 bot.hears(/hi bitch/gi, async (ctx) => {
   console.log(ctx.get)
+  console.log(ctx.chat)
   ctx.reply(`Hello @${ctx.message.from.username}`, {
     reply_to_message_id: ctx.message.message_id,
   })
 })
 
 bot.hears(/canda|lucu|cute|cnd/gi, (ctx) => {
+  console.log(ctx.chat)
   ctx.replyWithDocument(stickers['rollingEyes'].id)
 })
 
 bot.hears(/itungin/gi, (ctx) => {
+  console.log(ctx.chat)
   const text = ctx.message.text
   const isMultiple =
     ['*', 'x', 'kali'].filter((x) => text.indexOf(x)).length > 1
