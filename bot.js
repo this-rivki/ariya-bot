@@ -57,6 +57,11 @@ bot.hears(/itungin/gi, (ctx) => {
   ctx.reply(`hasilnya adalah ${result}`)
 })
 
-bot.launch()
+bot.hears(/hi/gi, (ctx) => {
+  console.log(ctx.chat)
+  ctx.reply('hi')
+})
+
+require('./schedule')(bot)
 
 module.exports = bot
