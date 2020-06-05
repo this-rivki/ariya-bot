@@ -54,4 +54,9 @@ module.exports = {
       'CAACAgUAAx0CSf7kgwACCq1e2LAwXsdLIeXLlxMzsl7R1fjJ7AACIAADrBblDJjhLcdDpwusGgQ',
     uniqueId: 'AgADIAADrBblDA',
   },
+  rollingEyes: {
+    id:
+      'CgACAgQAAx0CSf7kgwACCvde2ctOnfI-fofD621vUdetfMFh6QACQgIAAgdw7FKF3_o16nk90hoE',
+    uniqueId: 'AgADQgIAAgdw7FI',
+  },
 }

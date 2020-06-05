@@ -6,9 +6,8 @@ const stickers = require('./stickers')
 
 // const bot = new Telegraf('1140311147:AAH-CmKM4rRzKYSD0BQwdsTTpxtQheju5U0') // PROD
 const bot = new Telegraf('1111657351:AAHHgnVZdsLi-IpHY60SeNcZJVonJpLRIaI') // DEV
-// const bot = new Telegraf('577924115:AAHU9ei4MD_BvxutTISaxO_koUIu3XYmZYE') // DEV
 
-// require('./schedule')(bot)
+require('./schedule')(bot)
 
 bot.start((ctx) => ctx.reply('Welcome'))
 bot.help((ctx) => ctx.reply('Send me a stickersss'))
@@ -24,11 +23,6 @@ bot.on('animation', (ctx) => {
   ctx.reply('ctx.message')
 })
 
-bot.hears(/sticker/gi, (ctx) =>
-  ctx.replyWithSticker(
-    'CAACAgIAAx0CSf7kgwACClpe2KTuE-x7MK-dXllhpwyZNKXucQAConcBAAFji0YMmP33swABVmfRGgQ'
-  )
-)
 bot.hears(/corona/gi, (ctx) => {
   axios.get('https://covid19.mathdro.id/api/countries/idn').then((res) => {
     const { confirmed, recovered, deaths } = res.data
@@ -66,9 +60,13 @@ bot.hears(/itungin/gi, (ctx) => {
   ctx.reply(`hasilnya adalah ${result}`)
 })
 
-bot.hears(/hi/gi, (ctx) => {
+bot.hears(/mput/gi, (ctx) => {
   console.log(ctx.chat)
-  ctx.reply('hi')
+  ctx.reply('[Sini liat portfolio mput aja bitch!!!](https://ariya.design)', {
+    parse_mode: 'Markdown',
+  })
 })
+
+bot.launch()
 
 module.exports = bot
