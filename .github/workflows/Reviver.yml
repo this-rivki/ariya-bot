@@ -12,6 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: curl
-      uses: wei/curl@master
-      with:
-        args: https://ariya-bot.herokuapp.com/
+      run: curl https://ariya-bot.herokuapp.com/
