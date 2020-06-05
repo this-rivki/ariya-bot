@@ -91,7 +91,7 @@ bot.hears(/itungin/gi, (ctx) => {
   ctx.reply(`hasilnya adalah ${result}`)
 })
 
-bot.hears(/bego/gi, (ctx) => {
+bot.hears(/bego|gak sekolah/gi, (ctx) => {
   const username = ctx.message.from.username || ctx.message.from.first_name
   const answers = [
     'ya maaf. 😭',
