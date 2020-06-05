@@ -62,11 +62,13 @@ bot.hears(/itungin/gi, (ctx) => {
   console.log(ctx.chat)
   const text = ctx.message.text
   const isMultiple =
-    ['*', 'x', 'kali'].filter((x) => text.indexOf(x)).length > 1
+    ['*', 'x', 'kali'].filter((x) => text.indexOf(x) >= 0).length >= 1
   const isAdd =
-    ['tambah', '+', 'plus'].filter((x) => text.indexOf(x)).length > 1
-  const isDiv = ['bagi', ':', '/'].filter((x) => text.indexOf(x)).length > 1
-  const isSub = ['kurang', '-', 'min'].filter((x) => text.indexOf(x)).length > 1
+    ['tambah', '+', 'plus'].filter((x) => text.indexOf(x) >= 0).length >= 1
+  const isDiv =
+    ['bagi', ':', '/'].filter((x) => text.indexOf(x) >= 0).length >= 1
+  const isSub =
+    ['kurang', '-', 'min'].filter((x) => text.indexOf(x) >= 0).length >= 1
   const splitText = text.split(' ')
   const arrNumber = splitText.filter(Number).map(Number)
 
