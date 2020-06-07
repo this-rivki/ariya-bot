@@ -1,3 +1,4 @@
+const Markup = require('telegraf/markup')
 const axios = require('axios')
 const K2C = require('kelvin-to-celsius')
 const API_KEY = process.env.WEATHER_API
@@ -6,7 +7,9 @@ const API_URL = (location) =>
 
 module.exports = (bot) => {
   bot.command('/cuaca', (ctx) => {
-    const city = ctx.message.text.replace(/\/cuaca.*bot/, '').replace(/\s/g, '')
+    const city = ctx.message.text
+      .replace(/\/cuaca.*bot|\/cuaca/gi, '')
+      .replace(/\s/g, '')
     console.log(city)
     if (!city) return ctx.reply('kota mana begoo?!? bego banget dah!!')
 
