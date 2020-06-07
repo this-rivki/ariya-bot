@@ -46,7 +46,7 @@ terus-terus kecepatan anginnya ${locationData.wind.speed} m/s
     })
   })
 
-  bot.hears(/[cuaca|🌡].*[jakarta|bandung|cirebon|sukabumi]/gi, (ctx) => {
+  bot.hears(/cuaca|🌡.*jakarta|bandung|cirebon|sukabumi/gi, (ctx) => {
     const city = ctx.message.text.split(/\s/gi)[1]
 
     axios.get(API_URL(city)).then((res) => {
