@@ -15,6 +15,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 
 require('./schedule')(bot)
 require('./command/weather')(bot)
+require('./command/news')(bot)
 
 const getRandomNumber = (arr) => Math.floor(Math.random() * arr.length)
 
