@@ -2,6 +2,8 @@ const { Telegraf } = require('telegraf')
 const axios = require('axios')
 const groupIds = require('./group-id')
 
+// 1047378
+
 const groupId =
   process.env.NODE_ENV === 'DEV'
     ? groupIds['mikqi-and-bot']
@@ -12,6 +14,7 @@ const stickers = require('./stickers')
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 require('./schedule')(bot)
+require('./command/weather')(bot)
 
 const getRandomNumber = (arr) => Math.floor(Math.random() * arr.length)
 
