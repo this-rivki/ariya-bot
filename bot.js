@@ -1,8 +1,7 @@
 const { Telegraf } = require('telegraf')
 const axios = require('axios')
+const TelegrafWit = require('telegraf-wit')
 const groupIds = require('./group-id')
-
-// 1047378
 
 const groupId =
   process.env.NODE_ENV === 'DEV'
@@ -12,6 +11,7 @@ const groupId =
 const stickers = require('./stickers')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
+const wit = new TelegrafWit(process.env.WIT_TOKEN)
 
 require('./schedule')(bot)
 require('./command/weather')(bot)
@@ -20,14 +20,13 @@ require('./command/holiday')(bot)
 
 const getRandomNumber = (arr) => Math.floor(Math.random() * arr.length)
 
-bot.start((ctx) => ctx.reply('Welcome'))
-bot.help((ctx) => ctx.reply('Send me a stickersss'))
-bot.on('sticker', (ctx) => {
-  console.log(ctx.chat)
-  const uniqueId = ctx.message.sticker.file_unique_id
-  if (uniqueId === stickers['assalamualaikum'].uniqueId) {
-    ctx.replyWithSticker(stickers['waalaikumsalam'].id)
-  }
+bot.start((ctx) => ctx.reply('Welcome bitch'))
+
+bot.on('text', (ctx) => {
+  return wit.meaning(ctx.message.text).then((result) => {
+    // reply to user with wit result
+    return ctx.reply(JSON.stringify(result, null, 2))
+  })
 })
 
 bot.hears(/corona/gi, (ctx) => {
