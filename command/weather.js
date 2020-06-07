@@ -6,7 +6,8 @@ const API_URL = (location) =>
 
 module.exports = (bot) => {
   bot.command('/cuaca', (ctx) => {
-    const city = ctx.message.text.replace('/cuaca', '').replace(/\s/g, '')
+    const city = ctx.message.text.replace(/\/cuaca.*bot/, '').replace(/\s/g, '')
+    console.log(city)
     if (!city) return ctx.reply('kota mana begoo?!? bego banget dah!!')
 
     axios.get(API_URL(city)).then((res) => {
