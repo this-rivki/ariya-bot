@@ -22,11 +22,10 @@ const getRandomNumber = (arr) => Math.floor(Math.random() * arr.length)
 
 bot.start((ctx) => ctx.reply('Welcome bitch'))
 
-bot.on('text', (ctx) => {
-  return wit.meaning(ctx.message.text).then((result) => {
-    // reply to user with wit result
-    return ctx.reply(JSON.stringify(result, null, 2))
-  })
+bot.use(async (ctx, next) => {
+  await next()
+  if (ctx.message.text)
+    wit.meaning(ctx.message.text.replace(/(\/([^\s]+)\s)/gi, ''))
 })
 
 bot.hears(/corona/gi, (ctx) => {
