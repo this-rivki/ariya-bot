@@ -176,7 +176,7 @@ module.exports.isValidDate = function (dateString) {
  * humanizeTimestamp('2017-06-23T14:15:53.886+07:00', '%day% %dd% %mmm% %yyyy% - %hh%:%mi% WIB')
  * // => Jumat 23 Jun 2017 - 14:15 WIB
  *
- * @param  {String|Date} timestamp timestamp format
+ * @param  {String|Date|Number} timestamp timestamp format
  * @param  {String} format specific wanted format to humanize the timestamp (in-casesensitive)
  *
  * @return {String}
