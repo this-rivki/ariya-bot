@@ -1,7 +1,17 @@
+const CronJob = require('cron').CronJob
 const axios = require('axios')
+const fs = require('fs')
+const path = require('path')
+
+const groupIds = require('../group-id')
 const LIST_CITIES = require('./data/salah-city')
 const stickers = require('../stickers')
 const { humanizeTimestamp } = require('../utils/date')
+
+const groupId =
+  process.env.NODE_ENV === 'DEV'
+    ? groupIds['mikqi-and-bot']
+    : groupIds['anak-bawang-cabang-tele']
 
 const API_URL = 'https://api.banghasan.com/'
 const getSholatApiURL = (cityId, date) =>
@@ -9,6 +19,24 @@ const getSholatApiURL = (cityId, date) =>
 
 const getCityId = (ctx) => (city, idx) =>
   ctx.toLowerCase() === city.nama.toLowerCase()
+
+const saveSholatTime = async () => {
+  const cityId = '667' // Jakarta
+  const today = humanizeTimestamp(Date.now(), '%yyyy%-%mm%-%dd%')
+
+  const { data } = await axios.get(getSholatApiURL(cityId, today))
+  const jadwal = data.jadwal.data
+  fs.writeFile(
+    path.resolve(__dirname, 'data/salah-today.json'),
+    JSON.stringify(jadwal, null, 2),
+    'utf8',
+    (err) => {
+      if (err) return console.log(err)
+
+      console.log('file was saved')
+    }
+  )
+}
 
 module.exports = (bot) => {
   bot.command('jadwal_sholat', async (ctx) => {
@@ -38,4 +66,50 @@ Isya: ${jadwal.isya}
       { parse_mode: 'Markdown' }
     )
   })
+
+  // Jadwal Sholat
+
+  bot.command('set_jadwal_sholat', (ctx) => {
+    saveSholatTime()
+    ctx.reply('Triggered')
+    console.log(require('./data/salah-today.json'))
+  })
+
+  const setJadwalSholatToday = new CronJob(
+    '0 0 3 * * *',
+    function () {
+      saveSholatTime()
+    },
+    null,
+    true,
+    'Asia/Jakarta'
+  )
+  setJadwalSholatToday.start()
+
+  const checkJadwalSholat = new CronJob(
+    '0 * * * * *',
+    function () {
+      const currentTime = humanizeTimestamp(Date.now(), '%hh%:%mi%')
+      const jadwalSholat = require('./data/salah-today.json')
+      console.log(currentTime)
+      console.log(jadwalSholat)
+      const waktuSholat = Object.keys(jadwalSholat).find((waktu) => {
+        return jadwalSholat[waktu] === currentTime
+      })
+      console.log(waktuSholat)
+
+      if (waktuSholat) {
+        bot.telegram.sendSticker(groupId, stickers['assalamualaikum'].id)
+        bot.telegram.sendMessage(
+          groupId,
+          `Udah jam ${jadwalSholat[waktuSholat]} waktunya untuk sholat ${waktuSholat} nih untuk wilayah Jakarta dan sekitarnya.`
+        )
+      }
+    },
+    null,
+    true,
+    'Asia/Jakarta'
+  )
+
+  checkJadwalSholat.start()
 }
