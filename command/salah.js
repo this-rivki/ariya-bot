@@ -23,7 +23,7 @@ module.exports = (bot) => {
 
     const { data } = await axios.get(getSholatApiURL(cityId, today))
     const jadwal = data.jadwal.data
-    ctx.replyWithSticker(stickers['assalamualaikum'].id)
+    await ctx.replyWithSticker(stickers['assalamualaikum'].id)
     ctx.reply(
       `
 *Jadwal Sholat Untuk ${objectCity.nama}*
