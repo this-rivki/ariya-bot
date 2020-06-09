@@ -89,7 +89,10 @@ Isya: ${jadwal.isya}
   const checkJadwalSholat = new CronJob(
     '0 * * * * *',
     function () {
-      const currentTime = humanizeTimestamp(Date.now(), '%hh%:%mi%')
+      const jakartaTime = new Date().toLocaleString('en-US', {
+        timeZone: 'Asia/Jakarta',
+      })
+      const currentTime = humanizeTimestamp(new Date(jakartaTime), '%hh%:%mi%')
       const jadwalSholat = require('./data/salah-today.json')
       console.log(currentTime)
       console.log(jadwalSholat)
