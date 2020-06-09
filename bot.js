@@ -2,13 +2,12 @@ const { Telegraf } = require('telegraf')
 const axios = require('axios')
 const TelegrafWit = require('telegraf-wit')
 const groupIds = require('./group-id')
-
-const groupId =
-  process.env.NODE_ENV === 'DEV'
-    ? groupIds['mikqi-and-bot']
-    : groupIds['anak-bawang-cabang-tele']
-
 const stickers = require('./stickers')
+
+const isDev = process.env.NODE_ENV === 'DEV'
+const groupId = isDev
+  ? groupIds['mikqi-and-bot']
+  : groupIds['anak-bawang-cabang-tele']
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 const wit = new TelegrafWit(process.env.WIT_TOKEN)
@@ -17,6 +16,7 @@ require('./schedule')(bot)
 require('./command/weather')(bot)
 require('./command/news')(bot)
 require('./command/holiday')(bot)
+require('./command/salah')(bot)
 
 const getRandomNumber = (arr) => Math.floor(Math.random() * arr.length)
 
@@ -24,7 +24,7 @@ bot.start((ctx) => ctx.reply('Welcome bitch'))
 
 bot.use(async (ctx, next) => {
   await next()
-  if (ctx.message.text)
+  if (!isDev && ctx.message.text)
     wit.meaning(ctx.message.text.replace(/(\/([^\s]+)\s)/gi, ''))
 })
 
