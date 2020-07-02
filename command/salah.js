@@ -117,7 +117,7 @@ Isya: ${jadwal.isya}
   checkJadwalSholat.start()
 
   const surahOfTheDay = new CronJob(
-    '0 0 22 * * *',
+    '0 5 22 * * *',
     async function () {
       const { data } = await axios.get(`${API_URL}quran/format/json/acak`)
 
