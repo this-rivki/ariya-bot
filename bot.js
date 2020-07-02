@@ -85,13 +85,16 @@ bot.hears(/canda|lucu|cute|cnd/gi, (ctx) => {
   ctx.replyWithDocument(stickers['rollingEyes'].id)
 })
 
-bot.hears(/jokes|kalimat lucu|bikin.*ketawa|kata.*mutiara/gi, async (ctx) => {
-  const answers = require('./jokes.json')
+bot.hears(
+  /joke|jokes|kalimat lucu|bikin.*ketawa|kata.*mutiara|ngelawak/gi,
+  async (ctx) => {
+    const answers = require('./jokes.json')
 
-  ctx.reply(answers[getRandomNumber(answers)], {
-    reply_to_message_id: ctx.message.message_id,
-  })
-})
+    ctx.reply(answers[getRandomNumber(answers)], {
+      reply_to_message_id: ctx.message.message_id,
+    })
+  }
+)
 
 bot.hears(/rame.*belum|sepi.*sih/, (ctx) => {
   const answers = [
