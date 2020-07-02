@@ -67,6 +67,13 @@ bot.hears(/bitch/gi, async (ctx) => {
     'apaan sih lo panggil-panggil gw?',
     'apaan sih lo? kangen ya panggil-panggil? 😎',
     'gaje lu..',
+    'apaan sih...',
+    'daleemmmm',
+    'iya kenapa say??',
+    'yesss??',
+    'apaan sih lo bucin!!',
+    'anjirr. kenapa lo?',
+    'kamprettt.',
   ]
   ctx.reply(answers[getRandomNumber(answers)], {
     reply_to_message_id: ctx.message.message_id,
@@ -76,6 +83,14 @@ bot.hears(/bitch/gi, async (ctx) => {
 bot.hears(/canda|lucu|cute|cnd/gi, (ctx) => {
   console.log(ctx.chat)
   ctx.replyWithDocument(stickers['rollingEyes'].id)
+})
+
+bot.hears(/jokes|kalimat lucu|bikin.*ketawa|kata.*mutiara/gi, async (ctx) => {
+  const answers = require('./jokes.json')
+
+  ctx.reply(answers[getRandomNumber(answers)], {
+    reply_to_message_id: ctx.message.message_id,
+  })
 })
 
 bot.hears(/rame.*belum|sepi.*sih/, (ctx) => {
