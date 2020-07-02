@@ -88,7 +88,7 @@ Isya: ${jadwal.isya}
 
   const checkJadwalSholat = new CronJob(
     '0 * * * * *',
-    function () {
+    async function () {
       const jakartaTime = new Date().toLocaleString('en-US', {
         timeZone: 'Asia/Jakarta',
       })
@@ -102,8 +102,8 @@ Isya: ${jadwal.isya}
       console.log(waktuSholat)
 
       if (waktuSholat) {
-        bot.telegram.sendSticker(groupId, stickers['assalamualaikum'].id)
-        bot.telegram.sendMessage(
+        await bot.telegram.sendSticker(groupId, stickers['assalamualaikum'].id)
+        await bot.telegram.sendMessage(
           groupId,
           `Udah jam ${jadwalSholat[waktuSholat]} waktunya untuk sholat ${waktuSholat} nih untuk wilayah Jakarta dan sekitarnya.`
         )
@@ -115,4 +115,26 @@ Isya: ${jadwal.isya}
   )
 
   checkJadwalSholat.start()
+
+  const surahOfTheDay = new CronJob(
+    '0 0 22 * * *',
+    async function () {
+      const { data } = await axios.get(`${API_URL}quran/format/json/acak`)
+
+      await bot.telegram.sendSticker(groupId, stickers['assalamualaikum'].id)
+      await bot.telegram.sendMessage(
+        groupId,
+        `
+${data.acak.id.teks}
+
+${data.surat.name} ${data.acak.id.ayat}:${data.surat.ayat}
+	`
+      )
+    },
+    null,
+    true,
+    'Asia/Jakarta'
+  )
+
+  surahOfTheDay.start()
 }
