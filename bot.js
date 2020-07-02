@@ -17,6 +17,7 @@ require('./command/weather')(bot)
 require('./command/news')(bot)
 require('./command/holiday')(bot)
 require('./command/salah')(bot)
+require('./tebak-tebakan')(bot)
 
 const getRandomNumber = (arr) => Math.floor(Math.random() * arr.length)
 
