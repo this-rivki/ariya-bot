@@ -86,7 +86,7 @@ bot.hears(/canda|lucu|cute|cnd/gi, (ctx) => {
 })
 
 bot.hears(
-  /joke|jokes|kalimat lucu|bikin.*ketawa|kata.*mutiara|ngelawak/gi,
+  /joke|jokes|kalimat lucu|bikin.*ketawa|kata.*mutiara|lawak/gi,
   async (ctx) => {
     const answers = require('./jokes.json')
 
