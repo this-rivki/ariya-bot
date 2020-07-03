@@ -90,6 +90,8 @@ const claimGiveUpAgain = [
   'IYE UDAH TAU NYERAH',
 ]
 
+let timer
+
 module.exports = (bot) => {
   // Handler factoriess
   const { enter, leave } = Stage
@@ -112,7 +114,7 @@ module.exports = (bot) => {
     await ctx.reply('Waktunya 2 menit yaaa')
 
     let tick = 0
-    let timer = setInterval(async () => {
+    timer = setInterval(async () => {
       tick++
       if (tick === 60) await ctx.reply('Sisa 1 menit lagi gengs')
       if (tick === 90) await ctx.reply('Yok yok 30 detik lagi')
@@ -179,7 +181,8 @@ module.exports = (bot) => {
       })
 
       await ctx.reply(`Jawabannya itu, ${selectedQuiz.fullAnswer}`)
-      await ctx.reply(`Lagi gak?? /lagi`)
+      ctx.scene.leave('quiz')
+      clearInterval(timer)
     } else {
       ctx.reply(wrongAnswers[getRandomNumber(wrongAnswers)], {
         reply_to_message_id: ctx.message.message_id,
