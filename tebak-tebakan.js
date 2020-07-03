@@ -53,6 +53,41 @@ const alreadyGiveUp = [
   'kaya ada yang bales?',
   'IGNORE THIS',
   'GAK PEDULI',
+  'syuh syuhhhh',
+  'hussssh',
+]
+
+const claimGiveUp = [
+  'udah segitu doang??',
+  'MAN DOWN!!',
+  'udah gak sanggup lagi ya?',
+  'otaknya udah ngebul ya?',
+  'yahh cemen',
+  'cupu ahhhh..',
+  'kenapa?? gak kuat lagi?',
+  'wkwkwkwk',
+  'WKWKWKWKWKWKWKWKWKWK',
+  'cih.',
+  '💀',
+  'HUHUH',
+  'HAHAH',
+]
+
+const claimGiveUpAgain = [
+  'iyee udah tau nyerahh',
+  'mau nyerah sampe kapan sih',
+  'iya iya',
+  'y',
+  "pa'anci",
+  'cih',
+  'iyeeeee',
+  'syuh syuhhhh',
+  'hushhhh',
+  'hmm',
+  'nyerah teroooosssss',
+  'NYERAH TEROOSSSS',
+  'NYERAH LAGIIIIII',
+  'IYE UDAH TAU NYERAH',
 ]
 
 module.exports = (bot) => {
@@ -80,10 +115,14 @@ module.exports = (bot) => {
       giveUpMember.filter((member) => member.id === newGiveUp.id).length > 0
 
     if (!isExist) {
-      await ctx.reply(`${newGiveUp.first_name} cupu ahhh~`)
+      await ctx.reply(claimGiveUp[getRandomNumber(claimGiveUp)], {
+        reply_to_message_id: ctx.message.message_id,
+      })
       giveUpMember.push(newGiveUp)
     } else {
-      await ctx.reply(`${newGiveUp.first_name} iyeee udah tau~`)
+      await ctx.reply(claimGiveUpAgain[getRandomNumber(claimGiveUpAgain)], {
+        reply_to_message_id: ctx.message.message_id,
+      })
     }
 
     if (giveUpMember.length >= 3) {
