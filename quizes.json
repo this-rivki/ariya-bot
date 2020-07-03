@@ -209,7 +209,7 @@
   },
   {
     "question": "Buah yang paling ditakutin mahasiswa apa, hayo?",
-    "answer": "Belimbing, Terutama belimbingan skripsi",
+    "answer": "Belimbing",
     "fullAnswer": "Belimbing, Terutama belimbingan skripsi"
   },
   {
@@ -251,5 +251,20 @@
     "question": "Rambutan apa yang paling bahaya di dunia?",
     "answer": "Rambutan yang dimakan di tengah tol",
     "fullAnswer": "Rambutan yang dimakan di tengah tol"
+  },
+  {
+    "question": "Penyanyi luar negeri yang asli Indonesia?",
+    "answer": "Justin beber",
+    "fuullAnswer": "Justin beber"
+  },
+  {
+    "question": "Benda apa keluar ketika diputar?",
+    "answer": "Lipstik bibir",
+    "fullAnswer": "Lipstik bibir"
+  },
+  {
+    "question": "Tahu kamu malam apa yang sangat mengerikan dan menakutkan?",
+    "answer": "MAkLAMpir",
+    "fullAnswer": "MAkLAMpir"
   }
 ]
