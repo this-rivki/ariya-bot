@@ -141,6 +141,8 @@ module.exports = (bot) => {
       })
     }
 
+    ctx.scene.leave('quiz')
+
     if (giveUpMember.length >= 3) {
       await ctx.reply(`Jawabannya ituuuuuu....`)
       await ctx.reply(
