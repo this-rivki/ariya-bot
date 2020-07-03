@@ -70,6 +70,7 @@ module.exports = (bot) => {
 
   const quiz = new Scene('quiz')
   quiz.enter((ctx) => {
+    giveUpMember = []
     selectedQuiz = quizes[getRandomNumber(quizes)]
     ctx.reply(selectedQuiz.question)
   })
@@ -122,6 +123,7 @@ module.exports = (bot) => {
       await ctx.reply(rightAnswer[getRandomNumber(rightAnswer)], {
         reply_to_message_id: ctx.message.message_id,
       })
+
       await ctx.reply(`Jawabannya itu, ${selectedQuiz.fullAnswer}`)
       await ctx.reply(`Lagi gak?? /lagi`)
     } else {
