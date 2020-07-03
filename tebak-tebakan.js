@@ -104,6 +104,7 @@ module.exports = (bot) => {
   let giveUpMember = []
 
   const quiz = new Scene('quiz')
+
   quiz.enter(async (ctx) => {
     giveUpMember = []
     selectedQuiz = quizes[getRandomNumber(quizes)]
@@ -169,6 +170,7 @@ module.exports = (bot) => {
     const response = ctx.message.text
 
     const isTrue =
+      response &&
       response.toLowerCase().indexOf(selectedQuiz.answer.toLowerCase()) >= 0
 
     if (isTrue) {
@@ -186,8 +188,12 @@ module.exports = (bot) => {
   })
 
   const stage = new Stage([quiz], { ttl: 120 })
-  bot.use(session())
+  bot.use(
+    session({
+      getSessionKey: (ctx) => ctx.chat.id,
+    })
+  )
   bot.use(stage.middleware())
   bot.command('quiz', (ctx) => ctx.scene.enter('quiz'))
-  bot.hears(/tebak.*an/, (ctx) => ctx.scene.enter('quiz'))
+  bot.hears(/tebak.*an/gi, (ctx) => ctx.scene.enter('quiz'))
 }
