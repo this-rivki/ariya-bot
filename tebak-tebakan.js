@@ -104,10 +104,23 @@ module.exports = (bot) => {
   let giveUpMember = []
 
   const quiz = new Scene('quiz')
-  quiz.enter((ctx) => {
+  quiz.enter(async (ctx) => {
     giveUpMember = []
     selectedQuiz = quizes[getRandomNumber(quizes)]
-    ctx.reply(selectedQuiz.question)
+    await ctx.reply(selectedQuiz.question)
+    await ctx.reply('Waktunya 2 menit yaaa')
+
+    let tick = 0
+    let timer = setInterval(async () => {
+      tick++
+      if (tick === 60) await ctx.reply('Sisa 1 menit lagi gengs')
+      if (tick === 90) await ctx.reply('Yok yok 30 detik lagi')
+      if (tick === 115) await ctx.reply('5 detik lagi!!!')
+      if (tick === 120) {
+        await ctx.reply('yakkkk gak ada yang jawab bener yakkk. bhayy')
+        clearInterval(timer)
+      }
+    }, 1000)
   })
   quiz.hears(/nyerah/gi, async (ctx) => {
     const newGiveUp = ctx.from
