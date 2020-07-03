@@ -176,4 +176,5 @@ module.exports = (bot) => {
   bot.use(session())
   bot.use(stage.middleware())
   bot.command('quiz', (ctx) => ctx.scene.enter('quiz'))
+  bot.hears(/tebak.*an/, (ctx) => ctx.scene.enter('quiz'))
 }
