@@ -5,7 +5,8 @@ name: Cron Reviver
 
 on:
   schedule:
-    - cron: "*/30,58 * * * *"
+#     - cron: "*/30,58 * * * *"
+    - cron: "60 60 60 60"
 
 jobs:
   curl:
